@@ -1,9 +1,17 @@
+import { useEffect } from 'react';
 import { BankActionType } from './redux/bank';
 import { useAppSelector, useAppDispatch } from './redux/hooks';
+import postApi from './api/postApi';
 
 const App = () => {
   const { counter, loading } = useAppSelector((state) => state.bank);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    postApi.getAll().then((res) => {
+      console.log(res);
+    });
+  }, []);
 
   return (
     <div>
