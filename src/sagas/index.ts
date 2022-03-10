@@ -1,7 +1,8 @@
 import { all } from 'redux-saga/effects';
+import bankSaga from './bankSaga';
 
 function* rootSaga() {
-  yield console.log('Root saga runs!');
+  yield all([bankSaga()]);
 }
 
 export default rootSaga;

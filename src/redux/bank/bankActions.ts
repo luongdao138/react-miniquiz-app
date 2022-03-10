@@ -1,21 +1,19 @@
 import { BankActionType } from './bankTypes';
+import * as types from './bankTypes';
 
-interface DepositAction {
-  type: BankActionType.DEPOSIT;
-  payload: number;
+// action creators
+export function depositAsync(value: number): types.DepositAsyncAction {
+  return {
+    type: BankActionType.DEPOSIT_ASYNC,
+    payload: value,
+  };
 }
 
-interface WidthdrawAtion {
-  type: BankActionType.WITHDRAW;
-  payload: number;
+export function depositAsyncSuccess(value: number): types.DepositAsyncSuccessAction {
+  return {
+    type: BankActionType.DEPOSIT_ASYNC_SUCCESS,
+    payload: value,
+  };
 }
 
-interface BackruptAction {
-  type: BankActionType.BANKRUPT;
-}
-
-export type BankAction = BackruptAction | WidthdrawAtion | DepositAction;
-
-export interface BankState {
-  counter: number;
-}
+// action type and state type (for reducer)
