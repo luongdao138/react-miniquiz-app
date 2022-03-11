@@ -1,0 +1,9 @@
+@import './variables';
+@import './base.scss';
+
+@import './mixins';
+
+// pages
+@import './components/homepage';
+@import './components/playpage';
+@import './components/statspage';

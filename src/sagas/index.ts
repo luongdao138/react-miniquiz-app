@@ -1,8 +1,9 @@
 import { all } from 'redux-saga/effects';
-import bankSaga from './bankSaga';
+import categorySaga from './categorySaga';
+import questionSaga from './questionSaga';
 
 function* rootSaga() {
-  yield all([bankSaga()]);
+  yield all([categorySaga(), questionSaga()]);
 }
 
 export default rootSaga;

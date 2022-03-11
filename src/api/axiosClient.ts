@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: '',
+  baseURL: 'https://opentdb.com',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,7 +18,7 @@ axiosClient.interceptors.request.use(
 
 axiosClient.interceptors.response.use(
   (response: AxiosResponse) => {
-    return response.data;
+    return response;
   },
   (error) => {
     return Promise.reject(error);
