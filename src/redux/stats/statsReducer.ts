@@ -7,6 +7,8 @@ const initalState: Stats = {
   incorrectAns: 0,
   currentQuestion: 0,
   score: 0,
+  attemptedQuestion: 0,
+  history: [],
 };
 
 const statsReducer = (

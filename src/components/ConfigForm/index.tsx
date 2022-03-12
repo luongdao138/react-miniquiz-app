@@ -109,7 +109,14 @@ const ConfigForm = () => {
               </Field>
             </div>
 
-            <button type='submit'>Get started</button>
+            <button
+              type='submit'
+              onClick={() => {
+                (document.getElementById('button-sound') as HTMLAudioElement).play();
+              }}
+            >
+              Get started
+            </button>
           </Form>
         )}
       </Formik>

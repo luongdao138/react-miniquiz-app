@@ -6,6 +6,7 @@ import { store, persistor } from './redux/store';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './styles/index.scss';
 import { PersistGate } from 'redux-persist/integration/react';
+import ReviewPage from './pages/ReviewPage';
 
 // pages
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -40,6 +41,14 @@ ReactDOM.render(
                 element={
                   <React.Suspense fallback={null}>
                     <StatsPage />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path='review'
+                element={
+                  <React.Suspense fallback={null}>
+                    <ReviewPage />
                   </React.Suspense>
                 }
               />

@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { Stats } from '../../models';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { updateStats } from '../../redux/stats';
 import classes from './AnswerItem.module.scss';
-
+import { toast } from 'react-toastify';
+import { decode } from 'html-entities';
 interface Props {
   text: string;
   isAnswered: boolean;
@@ -22,7 +22,8 @@ const AnswerItem = ({
   correctAnswer,
 }: Props) => {
   const dispatch = useAppDispatch();
-  const { correctAns, incorrectAns, score } = useAppSelector((state) => state.stats);
+  const { correctAns, incorrectAns, score, attemptedQuestion, history, currentQuestion } =
+    useAppSelector((state) => state.stats);
   const containerClass = clsx({
     [classes.container]: true,
   });
@@ -38,13 +39,24 @@ const AnswerItem = ({
       correctAns,
       incorrectAns,
       score,
+      attemptedQuestion,
+      history,
     };
+    console.log(newStats);
 
     if (isCorrect) {
       newStats.score++;
       newStats.correctAns++;
+      newStats.attemptedQuestion++;
+      newStats.history.push({ number: currentQuestion, answer: text });
+      toast.success('Correct!');
+      (document.getElementById('correct-answer') as HTMLAudioElement).play();
     } else {
       newStats.incorrectAns++;
+      newStats.attemptedQuestion++;
+      newStats.history.push({ number: currentQuestion, answer: text });
+      toast.error('Incorrect!');
+      (document.getElementById('wrong-answer') as HTMLAudioElement).play();
     }
     dispatch(updateStats(newStats));
   };
@@ -77,7 +89,7 @@ const AnswerItem = ({
       onClick={handleSelectAnswer}
       style={{ background: getBackgroundColor() }}
     >
-      {text}
+      {decode(text)}
     </div>
   );
 };

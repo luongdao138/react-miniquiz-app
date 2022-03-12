@@ -11,8 +11,14 @@ const StatsPage = () => {
   const config = useAppSelector((state) => state.config);
 
   const handlePlayAgain = () => {
+    (document.getElementById('button-sound') as HTMLAudioElement).play();
     dispatch(reSetConfig());
     router.replace('/');
+  };
+
+  const handleReview = () => {
+    (document.getElementById('button-sound') as HTMLAudioElement).play();
+    router.replace('/review');
   };
 
   return (
@@ -34,6 +40,10 @@ const StatsPage = () => {
             <span>{config.amount}</span>
           </li>
           <li className='main__list__item'>
+            <span>Total number of attempted questions:</span>
+            <span>{stats.attemptedQuestion}</span>
+          </li>
+          <li className='main__list__item'>
             <span>Number of correct answers:</span>
             <span>{stats.correctAns}</span>
           </li>
@@ -45,6 +55,7 @@ const StatsPage = () => {
 
         <div className='main__btns'>
           <button onClick={handlePlayAgain}>Play again</button>
+          <button onClick={handleReview}>Review</button>
         </div>
       </div>
     </div>
